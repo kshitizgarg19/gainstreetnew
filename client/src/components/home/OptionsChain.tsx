@@ -81,18 +81,18 @@ export default function OptionsChain() {
   return (
     <section id="options" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-6">
+        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-6 text-foreground">
           Options <span className="text-secondary">Chain Analysis</span>
         </h2>
-        <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
           Comprehensive options data for informed trading decisions across all major Indian indices and stocks.
         </p>
         
-        <Card className="mb-8 bg-white shadow-lg">
+        <Card className="mb-8 bg-card shadow-lg border-secondary/20">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Select Index/Stock</label>
+                <label className="block text-sm font-medium text-foreground mb-1">Select Index/Stock</label>
                 <Select value={selectedSymbol} onValueChange={setSelectedSymbol}>
                   <SelectTrigger className="w-full md:w-[180px]">
                     <SelectValue placeholder="Select Index/Stock" />
@@ -108,7 +108,7 @@ export default function OptionsChain() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                <label className="block text-sm font-medium text-foreground mb-1">Expiry Date</label>
                 <Select value={selectedExpiry} onValueChange={setSelectedExpiry}>
                   <SelectTrigger className="w-full md:w-[180px]">
                     <SelectValue placeholder="Select Expiry Date" />
@@ -123,7 +123,7 @@ export default function OptionsChain() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Strike Price Range</label>
+                <label className="block text-sm font-medium text-foreground mb-1">Strike Price Range</label>
                 <div className="flex items-center gap-2">
                   <Input 
                     type="number" 
@@ -132,7 +132,7 @@ export default function OptionsChain() {
                     value={priceRangeFrom}
                     onChange={(e) => setPriceRangeFrom(e.target.value)}
                   />
-                  <span>-</span>
+                  <span className="text-foreground">-</span>
                   <Input 
                     type="number" 
                     placeholder="To" 
@@ -147,18 +147,18 @@ export default function OptionsChain() {
             <div className="overflow-x-auto custom-scrollbar">
               <table className="min-w-full">
                 <thead>
-                  <tr className="bg-primary text-white text-center text-sm">
+                  <tr className="bg-primary text-primary-foreground text-center text-sm">
                     <th colSpan={5} className="py-2 border-r border-r-white/20">CALLS</th>
                     <th className="py-2 px-3">Strike</th>
                     <th colSpan={5} className="py-2">PUTS</th>
                   </tr>
-                  <tr className="bg-primary/90 text-white text-sm">
+                  <tr className="bg-primary/90 text-primary-foreground text-sm">
                     <th className="py-2 px-3">OI</th>
                     <th className="py-2 px-3">Chg in OI</th>
                     <th className="py-2 px-3">Volume</th>
                     <th className="py-2 px-3">LTP</th>
                     <th className="py-2 px-3">IV</th>
-                    <th className="py-2 px-3 bg-secondary text-primary font-bold">Price</th>
+                    <th className="py-2 px-3 bg-secondary text-secondary-foreground font-bold">Price</th>
                     <th className="py-2 px-3">IV</th>
                     <th className="py-2 px-3">LTP</th>
                     <th className="py-2 px-3">Volume</th>
@@ -166,21 +166,21 @@ export default function OptionsChain() {
                     <th className="py-2 px-3">OI</th>
                   </tr>
                 </thead>
-                <tbody className="text-sm">
+                <tbody className="text-sm text-foreground">
                   {optionsData.map((option, index) => (
-                    <tr key={index} className="option-row border-b">
+                    <tr key={index} className="option-row border-b border-muted">
                       <td className="py-2 px-3 text-right font-mono">{option.callOI}</td>
-                      <td className={`py-2 px-3 text-right font-mono ${option.callOIChange.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                      <td className={`py-2 px-3 text-right font-mono ${option.callOIChange.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
                         {option.callOIChange}
                       </td>
                       <td className="py-2 px-3 text-right font-mono">{option.callVolume}</td>
                       <td className="py-2 px-3 text-right font-mono">{option.callLTP}</td>
                       <td className="py-2 px-3 text-right font-mono">{option.callIV}</td>
-                      <td className="py-2 px-3 text-center bg-gray-100 font-bold">{option.strikePrice}</td>
+                      <td className="py-2 px-3 text-center bg-muted font-bold">{option.strikePrice}</td>
                       <td className="py-2 px-3 text-right font-mono">{option.putIV}</td>
                       <td className="py-2 px-3 text-right font-mono">{option.putLTP}</td>
                       <td className="py-2 px-3 text-right font-mono">{option.putVolume}</td>
-                      <td className={`py-2 px-3 text-right font-mono ${option.putOIChange.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                      <td className={`py-2 px-3 text-right font-mono ${option.putOIChange.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
                         {option.putOIChange}
                       </td>
                       <td className="py-2 px-3 text-right font-mono">{option.putOI}</td>
@@ -191,22 +191,22 @@ export default function OptionsChain() {
             </div>
             
             <div className="mt-6">
-              <h4 className="text-lg font-bold mb-3">Options Analysis</h4>
+              <h4 className="text-lg font-bold mb-3 text-foreground">Options Analysis</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-primary p-4 rounded-sm text-white">
+                <div className="bg-primary p-4 rounded-sm text-primary-foreground">
                   <h5 className="font-medium mb-2">Put-Call Ratio</h5>
                   <p className="text-3xl font-bold"><span className="text-secondary">0.89</span></p>
-                  <p className="text-xs text-gray-300 mt-1">Slightly bearish sentiment</p>
+                  <p className="text-xs text-muted-foreground mt-1">Slightly bearish sentiment</p>
                 </div>
-                <div className="bg-primary p-4 rounded-sm text-white">
+                <div className="bg-primary p-4 rounded-sm text-primary-foreground">
                   <h5 className="font-medium mb-2">Max Pain</h5>
                   <p className="text-3xl font-bold"><span className="text-secondary">22,800</span></p>
-                  <p className="text-xs text-gray-300 mt-1">Key support/resistance level</p>
+                  <p className="text-xs text-muted-foreground mt-1">Key support/resistance level</p>
                 </div>
-                <div className="bg-primary p-4 rounded-sm text-white">
+                <div className="bg-primary p-4 rounded-sm text-primary-foreground">
                   <h5 className="font-medium mb-2">IV Percentile</h5>
                   <p className="text-3xl font-bold"><span className="text-secondary">65%</span></p>
-                  <p className="text-xs text-gray-300 mt-1">Above average volatility</p>
+                  <p className="text-xs text-muted-foreground mt-1">Above average volatility</p>
                 </div>
               </div>
             </div>

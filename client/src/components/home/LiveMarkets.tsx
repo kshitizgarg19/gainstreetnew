@@ -33,10 +33,10 @@ export default function LiveMarkets() {
           symbol: "NSE:NIFTY",
           interval: "D",
           timezone: "Asia/Kolkata",
-          theme: "light",
+          theme: "dark",
           style: "1",
           locale: "in",
-          toolbar_bg: "#f1f3f6",
+          toolbar_bg: "#1f2937",
           enable_publishing: false,
           withdateranges: true,
           hide_side_toolbar: false,
@@ -56,29 +56,29 @@ export default function LiveMarkets() {
   }, []);
 
   return (
-    <section id="markets" className="py-16 bg-white">
+    <section id="markets" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-6">
+        <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-6 text-foreground">
           Live <span className="text-secondary">Market Overview</span>
         </h2>
-        <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+        <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
           Stay ahead with real-time market data and comprehensive technical analysis powered by TradingView.
         </p>
         
-        <Card className="bg-white shadow-lg rounded-md p-4 mb-12">
+        <Card className="bg-card shadow-lg rounded-md p-4 mb-12 border-secondary/20">
           <CardContent className="p-0">
             <div id="tradingview-widget" ref={tradingViewRef} className="w-full h-[500px]">
-              <div className="flex items-center justify-center h-full bg-gray-100">
-                <p className="text-gray-500">Loading TradingView chart...</p>
+              <div className="flex items-center justify-center h-full bg-primary">
+                <p className="text-muted-foreground">Loading TradingView chart...</p>
               </div>
             </div>
           </CardContent>
         </Card>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-white shadow-lg rounded-md">
+          <Card className="bg-card shadow-lg rounded-md border-secondary/20">
             <CardContent className="p-4">
-              <h3 className="text-xl font-bold mb-4 flex items-center">
+              <h3 className="text-xl font-bold mb-4 flex items-center text-foreground">
                 <i className="fas fa-chart-bar text-secondary mr-2"></i> NSE Market Overview
               </h3>
               <div className="overflow-x-auto custom-scrollbar">
@@ -96,22 +96,22 @@ export default function LiveMarkets() {
                 ) : (
                   <table className="min-w-full">
                     <thead>
-                      <tr className="bg-primary text-white text-left">
+                      <tr className="bg-primary text-primary-foreground text-left">
                         <th className="py-3 px-4 font-semibold">Index</th>
                         <th className="py-3 px-4 font-semibold">Value</th>
                         <th className="py-3 px-4 font-semibold">Change</th>
                         <th className="py-3 px-4 font-semibold">%</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-foreground">
                       {indices?.map((index) => (
-                        <tr key={index.id} className="border-b">
+                        <tr key={index.id} className="border-b border-muted">
                           <td className="py-3 px-4 font-medium">{index.name}</td>
                           <td className="py-3 px-4 font-mono">{index.value}</td>
-                          <td className={`py-3 px-4 font-mono ${index.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                          <td className={`py-3 px-4 font-mono ${index.isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             {index.change}
                           </td>
-                          <td className={`py-3 px-4 font-mono ${index.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                          <td className={`py-3 px-4 font-mono ${index.isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             {index.percentChange}
                           </td>
                         </tr>
@@ -123,9 +123,9 @@ export default function LiveMarkets() {
             </CardContent>
           </Card>
           
-          <Card className="bg-white shadow-lg rounded-md">
+          <Card className="bg-card shadow-lg rounded-md border-secondary/20">
             <CardContent className="p-4">
-              <h3 className="text-xl font-bold mb-4 flex items-center">
+              <h3 className="text-xl font-bold mb-4 flex items-center text-foreground">
                 <i className="fas fa-fire-alt text-secondary mr-2"></i> Top Gainers/Losers
               </h3>
               <div className="overflow-x-auto custom-scrollbar">
@@ -143,22 +143,22 @@ export default function LiveMarkets() {
                 ) : (
                   <table className="min-w-full">
                     <thead>
-                      <tr className="bg-primary text-white text-left">
+                      <tr className="bg-primary text-primary-foreground text-left">
                         <th className="py-3 px-4 font-semibold">Stock</th>
                         <th className="py-3 px-4 font-semibold">LTP</th>
                         <th className="py-3 px-4 font-semibold">Change</th>
                         <th className="py-3 px-4 font-semibold">%</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-foreground">
                       {stocks?.map((stock) => (
-                        <tr key={stock.id} className="border-b">
+                        <tr key={stock.id} className="border-b border-muted">
                           <td className="py-3 px-4 font-medium">{stock.symbol}</td>
                           <td className="py-3 px-4 font-mono">{stock.ltp}</td>
-                          <td className={`py-3 px-4 font-mono ${stock.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                          <td className={`py-3 px-4 font-mono ${stock.isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             {stock.change}
                           </td>
-                          <td className={`py-3 px-4 font-mono ${stock.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                          <td className={`py-3 px-4 font-mono ${stock.isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             {stock.percentChange}
                           </td>
                         </tr>
