@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 14% 12%;
+    --foreground: 210 10% 98%;
+    
+    --card: 222 16% 15%;
+    --card-foreground: 210 10% 98%;
+    
+    --popover: 222 16% 15%;
+    --popover-foreground: 210 10% 98%;
+    
+    --primary: 222 16% 18%;
+    --primary-foreground: 210 10% 98%;
+    
+    --secondary: 45 94% 57%;
+    --secondary-foreground: 220 14% 12%;
+    
+    --muted: 217 13% 22%;
+    --muted-foreground: 215 16% 75%;
+    
+    --accent: 45 94% 57%;
+    --accent-foreground: 220 14% 12%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 10% 98%;
+    
+    --border: 217 13% 25%;
+    --input: 217 13% 25%;
+    --ring: 45 94% 57%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-[Montserrat];
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-[Playfair_Display];
+  }
+}
+
+@layer components {
+  .gold-gradient {
+    @apply bg-gradient-to-r from-secondary via-secondary/80 to-secondary;
+  }
+  
+  .nav-link {
+    @apply relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply block w-0 h-0.5 bg-secondary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .premium-card {
+    @apply transition-all duration-300;
+  }
+  
+  .premium-card:hover {
+    @apply transform -translate-y-1;
+  }
+  
+  .option-row:nth-child(even) {
+    @apply bg-primary/5;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-secondary rounded-sm;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary/80;
+  }
+  
+  .text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
